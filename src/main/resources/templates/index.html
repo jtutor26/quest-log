@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Quest Log Manager</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; }
+        .section { margin-bottom: 2rem; padding: 1rem; border: 1px solid #ccc; background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+<h1>Quest Log Dashboard</h1>
+
+<div class="section">
+    <h2>Heroes</h2>
+    <form th:action="@{/add-hero}" th:object="${newHero}" method="post">
+        <input type="text" th:field="*{name}" placeholder="Hero Name" required>
+        <input type="text" th:field="*{classType}" placeholder="Class (e.g., Porter)" required>
+        <br><br>
+
+        <label>Select Skills (Hold Ctrl/Cmd to select multiple):</label><br>
+        <select name="skillIds" multiple style="height: 80px; min-width: 150px;">
+            <option th:each="skill : ${skills}" th:value="${skill.id}" th:text="${skill.name}"></option>
+        </select>
+        <br><br>
+
+        <button type="submit">Submit Hero</button>
+    </form>
+
+    <h3>Roster</h3>
+    <ul>
+        <li th:each="hero : ${heroes}">
+            <strong th:text="${hero.name}"></strong>
+            <span th:text="'(' + ${hero.classType} + ')'"></span>
+
+            <span th:if="${!hero.skills.isEmpty()}">
+                    <br>↳ <i>Skills:</i>
+                    <span th:each="skill, iterStat : ${hero.skills}" th:text="${skill.name} + ${!iterStat.last ? ', ' : ''}"></span>
+                </span>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Quests</h2>
+    <form th:action="@{/add-quest}" th:object="${newQuest}" method="post">
+        <input type="text" th:field="*{title}" placeholder="Quest Title" required>
+        <input type="text" th:field="*{location}" placeholder="Location" required>
+
+        <select th:field="*{hero}">
+            <option value="">-- Assign a Hero --</option>
+            <option th:each="h : ${heroes}" th:value="${h.id}" th:text="${h.name}"></option>
+        </select>
+
+        <input type="hidden" th:field="*{isCompleted}" th:value="false" />
+        <button type="submit">Submit Quest</button>
+    </form>
+    <ul>
+        <li th:each="quest : ${quests}">
+            <strong th:text="${quest.title}"></strong>
+            <span th:text="' (Location: ' + ${quest.location} + ')'"></span>
+            <span th:if="${quest.hero != null}" th:text="' - Assigned to: ' + ${quest.hero.name}" style="color: blue;"></span>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Skills</h2>
+    <form th:action="@{/add-skill}" th:object="${newSkill}" method="post">
+        <input type="text" th:field="*{name}" placeholder="Skill Name" required>
+        <button type="submit">Submit Skill</button>
+    </form>
+    <ul>
+        <li th:each="skill : ${skills}" th:text="${skill.name}"></li>
+    </ul>
+</div>
+
+</body>
+</html>

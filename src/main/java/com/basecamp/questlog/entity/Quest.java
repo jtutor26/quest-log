@@ -16,5 +16,9 @@ public class Quest {
     private String description;
     private String location;
     private Integer priority;
-    private boolean isCompleted;
+    private Boolean isCompleted;
+
+    @ManyToOne
+    @JoinColumn(name = "hero_id")
+    private Hero hero;
 }

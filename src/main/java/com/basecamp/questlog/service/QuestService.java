@@ -37,7 +37,7 @@ public class QuestService {
             quest.setDescription(questDetails.getDescription());
             quest.setLocation(questDetails.getLocation());
             quest.setPriority(questDetails.getPriority());
-            quest.setCompleted(questDetails.isCompleted());
+            quest.setIsCompleted(questDetails.getIsCompleted());
             return questRepository.save(quest);
         }).orElseThrow(() -> new RuntimeException("Quest not found with id " + id));
     }
