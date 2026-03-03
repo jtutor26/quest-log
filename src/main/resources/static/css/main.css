@@ -1,0 +1,125 @@
+:root {
+    --bg-color: #f4f0ea;
+    --main-border: 3px solid #000;
+    --hard-shadow: 6px 6px 0px #000;
+    --hover-shadow: 2px 2px 0px #000;
+    --accent-yellow: #ffde59;
+    --accent-pink: #ff66c4;
+    --accent-blue: #5ce1e6;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 2rem;
+    background-color: var(--bg-color);
+    color: #000;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 3rem;
+    letter-spacing: -2px;
+    text-shadow: 4px 4px 0px var(--accent-pink);
+    margin-bottom: 2rem;
+}
+
+h2 {
+    border-bottom: var(--main-border);
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    background-color: var(--accent-blue);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: var(--main-border);
+    box-shadow: 4px 4px 0px #000;
+}
+
+.section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border: var(--main-border);
+    background-color: #fff;
+    box-shadow: var(--hard-shadow);
+    transition: all 0.2s ease-in-out;
+}
+
+.section:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
+}
+
+input[type="text"], select {
+    font-family: 'Space Grotesk', sans-serif;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: var(--main-border);
+    background-color: #fff;
+    font-size: 1rem;
+    box-shadow: 3px 3px 0px #000;
+    outline: none;
+    transition: all 0.1s;
+}
+
+input[type="text"]:focus, select:focus {
+    background-color: var(--accent-yellow);
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #000;
+}
+
+select[multiple] {
+    background-color: #fff;
+}
+
+select[multiple] option:checked {
+    background-color: var(--accent-pink) !important;
+    color: #fff;
+    font-weight: bold;
+}
+
+button {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    background-color: var(--accent-yellow);
+    border: var(--main-border);
+    cursor: pointer;
+    box-shadow: var(--hard-shadow);
+    text-transform: uppercase;
+    transition: all 0.1s;
+}
+
+button:active {
+    transform: translate(4px, 4px);
+    box-shadow: var(--hover-shadow);
+    background-color: var(--accent-pink);
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    border: 2px solid #000;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    box-shadow: 3px 3px 0px #000;
+}
+
+li strong {
+    font-size: 1.2rem;
+    background-color: var(--accent-yellow);
+    padding: 0 0.2rem;
+}
+
+/* Obnoxious accent for assigned heroes */
+li span[style*="color: blue;"] {
+    color: #000 !important;
+    background-color: var(--accent-blue);
+    font-weight: bold;
+    padding: 0.1rem 0.4rem;
+    border: 1px solid #000;
+}
